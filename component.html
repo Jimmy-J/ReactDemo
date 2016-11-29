@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+
+       <!-- react.js 是 React 的核心库 -->
+    <script src="./react-15.3.1/build/react.js"></script>
+    <!-- react-dom.js 的作用是提供与DOM相关的功能 -->
+    <script src="./react-15.3.1/build/react-dom.js"></script>
+    <!-- browser.min.js 的作用是将JSX语法转换成 JavaScript 语法-->
+    <script src="./react-15.3.1/build/browser.min.js"></script>
+
+    <style >
+    	.pStyle { 
+			font-size: 20px;
+    	 }
+    </style>
+</head>
+
+<body>
+ 	<!-- React渲染的模版内容会插入到这个DOM节点中，作为一个容器 -->
+ 	<div id="container">
+ 		
+
+ 	</div>
+</body>
+<!-- 在React开发中，使用的是JSX，跟JavaScript不兼容，在使用JSX的地方，要设置 type: text/babel -->
+<!-- babel 是一个转换编译器，ES6转化成可以在浏览器中运行的代码 -->
+<script type="text/babel">
+
+	/*
+		创建一个组件类，用于输出Hello React
+
+		1.React中创建的组件类以大写字母开头，驼峰命名法
+		2.在React中使用React.createClass方法创建一个组件类
+		3.核心代码： 每个组件类都必须实现自己的render方法。输出定义好的组件模版。返回值: null 、false 、组件模版
+		4.注意：组件类只能包含一个顶层标签
+
+
+	*/
+
+
+	var HelloMessage = React.createClass({
+		render: function() {
+			return <h1>Hello React</h1>
+		}
+	});
+
+	ReactDOM.render(
+		// 在模版中插入<HelloMessage /> 会自动生成一个实例
+		<HelloMessage/>,
+		document.getElementById("container")
+	);
+
+
+	/*
+		设置组件的样式，讲解三种：
+		1.内联样式
+		2.对象样式
+		3.选择器样式
+
+
+		注意：在 React 和 HTML5 设置样式是的书写格式是有区别的
+		1.HTML5以 ; 结尾
+		  React以 , 结尾
+		2.HTML5中key、value 都不加导号
+		  React中属于JavaScript对象，key的名字不能出现 "-" , 需要使用驼峰命名法。如果vaule 为
+		  字符串，需要加引号。
+		3.HTML5中，value如果是数字，需要带单位
+		  React之后你不需要待单位
+
+
+		我们定义一个组件类，同时使用三种设置组件样式的方式
+		需求：定义一个组件，分为上下两行显示内容
+		<div> 内联样式： 设置背景颜色、边框大小、边框颜色
+			<h1></h1> 对象样式：设置背景颜色、字体颜色
+			<p></p> 选择器样式: 设置字体大小
+		</div>  
+
+		注意： 在React中使用选择器样式设置组件样式是，属性名不能使用 class ，需要使用 className替换。
+				类似的用htmlfor	去替换 for
+
+	*/
+		
+	// 创建设置h1样式对象 
+	var hStyle = {
+		backgroundColor: "green",
+		color: "red"
+	}
+
+	var ShowMessage = React.createClass({
+			render: function(){
+				return (
+						<div style={{backgroundColor:"yellow", borderWidth:5,borderColor:"black",borderStyle:"solid"}}>
+							<h1 style={hStyle}>{this.props.firstRow}</h1>
+							<p className="pStyle">{this.props.secondRow}</p>
+						</div>
+					);
+			}
+		});
+
+		ReactDOM.render(
+			<ShowMessage firstRow="你好" secondRow="React"/>,
+			document.getElementById("container")
+		)
+	
+</script>
+
+</html>

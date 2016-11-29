@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+
+       <!-- react.js 是 React 的核心库 -->
+    <script src="./react-15.3.1/build/react.js"></script>
+    <!-- react-dom.js 的作用是提供与DOM相关的功能 -->
+    <script src="./react-15.3.1/build/react-dom.js"></script>
+    <!-- browser.min.js 的作用是将JSX语法转换成 JavaScript 语法-->
+    <script src="./react-15.3.1/build/browser.min.js"></script>
+</head>
+
+<body>
+ 	<!-- React渲染的模版内容会插入到这个DOM节点中，作为一个容器 -->
+ 	<div id="container">
+ 		
+
+ 	</div>
+</body>
+<!-- 在React开发中，使用的是JSX，跟JavaScript不兼容，在使用JSX的地方，要设置 type: text/babel -->
+<!-- babel 是一个转换编译器，ES6转化成可以在浏览器中运行的代码 -->
+<script type="text/babel">
+	/*
+		props、state
+		props是组件自身的属性，一帮用于嵌套内外层组件中，负责传递信息（通常是由父层组件向子层组件传递）
+		注意：props对象中的属性与组件中的属性一一对应，不要直接去修改props中的属性的值
+
+	*/
+
+	/*
+		定义一个组件WebShow。功能：输出网站的名字和网址，网址是一个可以点击的链接
+		分析：定义一个组件WebName负责输出网站的名字，定义组件WebLink显示网站的网址，并可以点击
+
+		思路：
+		1.给WebShow设置两个属性 wname，wlink
+		2.WebShow的props对象增加了两个属性值
+		3.WebName从WebShow的props对象中获取wname的值，即网站的名称。
+
+	*/
+
+   /*
+	// 定义WebName
+	var WebName = React.createClass({
+		render:function  () {
+			return <h1>{this.props.webname}</h1>;
+		}
+	})
+	// 定义WebLink
+	var WebLink = React.createClass({
+		render:function (){
+			return <a href={this.props.weblink}>{this.props.weblink}</a>;
+		}
+	})
+	// 定义WebShow
+	var WebShow = React.createClass({
+		render:function(){
+			return (
+					<div>
+						<WebName webname={this.props.wname} />
+						<WebLink weblink={this.props.wlink} />
+					</div>
+				)
+		}
+	})
+	// 渲染 
+	ReactDOM.render(
+			<WebShow wname="蓝鸥集团" wlink="https://www.baidu.com"/>,
+			document.getElementById("container")
+		)
+	*/
+
+	/*
+		...this.props
+		props 提供语法糖，可以将父组件中的全部属性都复制给子组件
+
+		需求：定义一个组件Link，Link组件中只包含一个<a>，我们不给<a>设置任何属性，所有属性全部从父组件复制得到
+	*/
+
+	var Link = React.createClass({
+		render: function(){
+			return <a {...this.props}>{this.props.name}</a>
+		}
+	})
+
+	ReactDOM.render(<Link href="https://www.baidu.com" name="蓝鸥科技"/>,document.getElementById("container"))
+
+
+</script>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+
+       <!-- react.js 是 React 的核心库 -->
+    <script src="./react-15.3.1/build/react.js"></script>
+    <!-- react-dom.js 的作用是提供与DOM相关的功能 -->
+    <script src="./react-15.3.1/build/react-dom.js"></script>
+    <!-- browser.min.js 的作用是将JSX语法转换成 JavaScript 语法-->
+    <script src="./react-15.3.1/build/browser.min.js"></script>
+</head>
+
+<body>
+ 	<!-- React渲染的模版内容会插入到这个DOM节点中，作为一个容器 -->
+ 	<div id="container">
+ 		
+
+ 	</div>
+</body>
+<!-- 在React开发中，使用的是JSX，跟JavaScript不兼容，在使用JSX的地方，要设置 type: text/babel -->
+<!-- beael 是一个转换编译器，ES6转化成可以在浏览器中运行的代码 -->
+<script type="text/javascript">
+
+</script>
+<script type="text/babel">
+	// 编写代码 
+
+	//需求：渲染一行标题， 显示 "Hello React"
+	/*
+		ReactDOM.render()
+		React的最基本方法，用于将模版转换成HTML语言，渲染DOM ，并插入指定的DOM节点中
+
+		3个参数
+		第一个：模版的渲染内容（HTML形式）
+		第二个：这段模版需要插入的DOM节点（本程序中，是id为container的div节点）
+		第三个：渲染后的回调，一般不用
+	*/
+	
+	// ReactDOM.render(
+	// 	<h1>Hello React</h1>
+	// 	,document.getElementById("container"));
+
+
+	/*
+		
+		JSX 入门 
+
+		JSX不是一门新的语言，是个语法（语法糖）。
+	*/
+
+	// 1.JSX必须借助React环境运行
+	// 2.JSX表情其实就是HTML标签，只不过我们在JavaScript中书写这些标签的时候，不用使用 "" 括起来。
+	// 可以向XML一样书写
+
+	//ReactDOM.render(<h1>Hello React</h1>,
+	//	document.getElementById("container"));
+
+		//3.转换： JSX语法能够让我们更直观的看到组件的DOM结构，不能直接在浏览器上运行，最终会转换成 JavaScript 
+
+		// ReactDOM.render(
+			React.createElement("h1",null,"Hello React"),
+			document.getElementById("container")
+		// );
+
+		//4.在JSX中运行JavaScript代码 
+		// 使用 {} 括起来 {表达式}
+
+		var text = "蓝鸥";
+		ReactDOM.render(
+			<h1>{text}</h1>,
+			document.getElementById("container")
+		);
+
+		// 5. 包括： 属性，设置样式，事件绑定
+
+</script>
+
+
+</html>
