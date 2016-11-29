@@ -72,6 +72,7 @@
 		)
 	*/
 
+
 	/*
 		...this.props
 		props 提供语法糖，可以将父组件中的全部属性都复制给子组件
@@ -79,13 +80,99 @@
 		需求：定义一个组件Link，Link组件中只包含一个<a>，我们不给<a>设置任何属性，所有属性全部从父组件复制得到
 	*/
 
-	var Link = React.createClass({
-		render: function(){
-			return <a {...this.props}>{this.props.name}</a>
+	// var Link = React.createClass({
+	// 	render: function(){
+	// 		return <a {...this.props}>{this.props.name}</a>
+	// 	}
+	// })
+
+	// ReactDOM.render(<Link href="https://www.baidu.com" name="蓝鸥科技"/>,document.getElementById("container"))
+
+	/*
+		this.props.children
+
+		chilren是一个例外，不是跟组件属性对应的
+		表示组件的所有子节点 
+
+		HTML5中有一种标签：列表 <ul> <ol> <li>
+	*/
+
+
+	// var ListComponent = React.createClass({
+	// 	render: function(){
+	// 		return (
+	// 				<ul>
+	// 					{
+	// 						/*
+	// 							列表数量以及内容不确定，在创建模式才能确定 
+	// 							利用this.props.children从父组件获取需要展示的列表项内容 
+
+	// 							获取列表项的内容后，需要遍历chilren，逐项进行设置 
+	// 							使用 React.Childre.map方法
+	// 							返回值： 数组对象，这里数组中的元素是 <li></li>
+	// 						*/
+
+	// 						React.Children.map(this.props.children,function(child){
+	// 							// child是遍历得到的父组件的子节点
+	// 							return <li>{child}</li>
+	// 						})
+
+	// 					}
+
+	// 				</ul>
+	// 			)
+	// 	}
+	// })
+	
+
+	// ReactDOM.render((
+	// 		<ListComponent>
+	// 			<h1>蓝鸥集团</h1>
+	// 			<a href="https://www.baidu.com">https://www.baidu.com</a>
+	// 		</ListComponent>
+	// 	),document.getElementById("container"))
+
+
+	/*
+		属性验证 propTypes
+
+		组件类的属性
+
+		用于验证组件实例的属性是否符合要求
+	*/
+	
+	/*	
+	var ShowTitle = React.createClass({
+		propTypes:{
+			// title 数据类型必须是string
+			title: React.PropTypes.string.isRequired
+		},
+		render:function(){
+			return <h1>{this.props.title}</h1>
 		}
 	})
 
-	ReactDOM.render(<Link href="https://www.baidu.com" name="蓝鸥科技"/>,document.getElementById("container"))
+	ReactDOM.render(<ShowTitle title=123></ShowTitle>,document.getElementById("container"))
+	*/
+
+	/*
+		设置组件属性的默认值
+
+		通过实现getDefaultProps方法，对属性设置默认值 
+	*/
+
+	var MyTitle = React.createClass({
+		getDefaultProps:function(){
+			return {
+				title:"title"
+			}
+		},
+		render:function(){
+			return <h1>{this.props.title}</h1>
+		}
+	})
+
+	ReactDOM.render(<MyTitle></MyTitle>,document.getElementById("container"))
 
 
 </script>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+
+       <!-- react.js 是 React 的核心库 -->
+    <script src="./react-15.3.1/build/react.js"></script>
+    <!-- react-dom.js 的作用是提供与DOM相关的功能 -->
+    <script src="./react-15.3.1/build/react-dom.js"></script>
+    <!-- browser.min.js 的作用是将JSX语法转换成 JavaScript 语法-->
+    <script src="./react-15.3.1/build/browser.min.js"></script>
+</head>
+
+<body>
+ 	<!-- React渲染的模版内容会插入到这个DOM节点中，作为一个容器 -->
+ 	<div id="container">
+ 		
+
+ 	</div>
+</body>
+<!-- 在React开发中，使用的是JSX，跟JavaScript不兼容，在使用JSX的地方，要设置 type: text/babel -->
+<!-- babel 是一个转换编译器，ES6转化成可以在浏览器中运行的代码 -->
+<script type="text/babel">
+	{/*
+		事件处理
+		 
+		 react中的事件名称，首字母小写，驼峰命名法
+
+		案例：定义一个组件，组件中包含一个button，给button绑定onClick事件
+		
+	*/}
+
+	{/*	
+	var MyButton = React.createClass({
+		handleClick:function(){
+			alert("点击按钮触发效果")
+		},
+		render:function(){
+			return (
+					<button onClick={this.handleClick}>{this.props.buttonTitle}
+					</button>
+				)
+		}
+	})
+
+	ReactDOM.render(<MyButton buttonTitle="按钮"></MyButton>,
+		document.getElementById("container"))
+	*/}
+
+	{/*
+		state 状态 
+		props
+		组件自身的属性 
+
+		this.state
+
+		需求：创建一个CheckButton的组件，包含一个checkbox类型的 <input/>	
+		复选框在选择和为选中两种状态下会显示不同的文字，即根据状态渲染
+	*/}
+
+
+	{/*
+	var CheckButton = React.createClass({
+		// 定义初始状态
+		getInitialState: function() {
+			return {
+				// 在这个对象中设置的属性，将会存储在state中
+				// 默认状态，未选中
+				isCheck: false
+			}
+		},
+		// 定义事件绑定的方法
+		handleChange: function(){
+			// 修改状态值，通过this.state读取设置的状态值
+			this.setState({
+				isCheck: !this.state.isCheck
+			});
+		},
+		render: function() {
+			// 根据状态值，设置显示的文字
+			// 在JSX语法中，不能直接使用 if else ，使用三目运算符
+			var text = this.state.isCheck ? "已选中":"未选中"
+			return (
+					<div>
+						<input type="checkbox" onChange={this.handleChange}/>
+						{text}
+					</div>
+				)
+		}
+	})
+
+	ReactDOM.render(
+			<CheckButton></CheckButton>
+			,document.getElementById("container")
+		)
+	*/}
+
+	{/*
+		当state发生变化时，会调用组件内部的render方法
+	*/}
+
+
+	{/*
+		需求：定义一个组件，将用户在输入框内输入的内容进行实时显示
+
+		分析：
+		组件与用户交互过程中，存在状态的变化，即输入框的值
+		
+	*/}
+
+	var Input = React.createClass({
+		getInitialState: function(){
+			return {
+				value: "请输入"
+			}
+		},
+		handleChange: function(event) {
+			// 通过event.target.value读取用户输入的值
+			this.setState({
+				value: event.target.value
+			})
+		},
+		render: function(){
+			var value = this.state.value;
+			return (
+					<div>
+						<input type="text" value={value} onChange={this.handleChange}/>
+
+						<p>{value}</p>
+					</div>
+				)
+		}
+		})
+
+	ReactDOM.render(<Input></Input>,document.getElementById("container"))
+</script>
+
+</html>
